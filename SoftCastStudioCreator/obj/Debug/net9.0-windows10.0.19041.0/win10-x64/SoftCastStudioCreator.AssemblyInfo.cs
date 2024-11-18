@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoftCastStudioCreator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b99b4a999506f12ee6bbdb11c06f648454988444")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoftCastStudioCreator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoftCastStudioCreator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

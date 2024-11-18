@@ -46,29 +46,41 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Card Botão Incluir Lista de Conteúdo -->
+                <!-- Card Botão Incluir Novo Conteúdo -->
                 <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White"
                        BorderColor="Gray" Padding="20" CornerRadius="10"
                        HasShadow="True">
                     <StackLayout Spacing="10" HorizontalOptions="Center">
                         <Image Source="content_icon.png" WidthRequest="50" HeightRequest="50" />
-                        <Label Text="Incluir Lista de Conteúdo" HorizontalOptions="Center" />
+                        <Label Text="INCLUIR NOVO CONTEÚDO" HorizontalOptions="Center" />
                     </StackLayout>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnIncluirListaClicked" />
+                        <TapGestureRecognizer Tapped="OnIncluirConteudoClicked" />
                     </Frame.GestureRecognizers>
                 </Frame>
-
-                <!-- Card Botão Indicadores de Performance -->
+                
+                <!-- Card Botão Acessar Conteúdos Criados -->
                 <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White"
                        BorderColor="Gray" Padding="20" CornerRadius="10"
                        HasShadow="True">
                     <StackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="access_icon.png" WidthRequest="50" HeightRequest="50" />
+                        <Label Text="ACESSAR CONTEÚDOS CRIADOS" HorizontalOptions="Center" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAcessarConteudosClicked" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                
+                <!-- Card Botão Indicadores de Performance -->
+                <Frame Grid.Row="0" Grid.Column="2" BackgroundColor="White"
+                       BorderColor="Gray" Padding="20" CornerRadius="10"
+                       HasShadow="True">
+                    <StackLayout Spacing="10" HorizontalOptions="Center">
                         <Image Source="performance_icon.png" WidthRequest="50" HeightRequest="50" />
-                        <Label Text="Indicadores de Performance" HorizontalOptions="Center" />
+                        <Label Text="INDICADORES DE PERFORMANCE" HorizontalOptions="Center" />
                     </StackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnIndicadoresClicked" />
