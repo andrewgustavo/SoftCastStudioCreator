@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SoftCastStudioCreator.Views.RegisterPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
+    <StackLayout Padding="30" Spacing="15">
+        <Label Text="Cadastro do Criador"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="nomeEntry"
+               Placeholder="Nome Completo"
+               Margin="0,10,0,5" />
+
+        <Entry x:Name="emailEntry"
+               Placeholder="Email"
+               Keyboard="Email"
+               Margin="0,10,0,5" />
+
+		<Grid ColumnSpacing="15" Margin="0,10,0,15">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<Entry x:Name="senhaEntry"
+                   Placeholder="Senha"
+                   IsPassword="True"
+                   Grid.Column="0" />
+
+			<Entry x:Name="confirmSenhaEntry"
+                   Placeholder="Confirmar Senha"
+                   IsPassword="True"
+                   Grid.Column="1" />
+		</Grid>
+
+
+		<Button Text="Cadastrar"
+                Clicked="OnCadastrarClicked"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Padding="20,10">        
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                <Setter Property="BorderColor" Value="Gray" />
+                                <Setter Property="TextColor" Value="#512BD4"/>
+                                <Setter Property="FontAttributes" Value="Bold" />
+                                <Setter Property="BorderWidth" Value="2" />
+                                <Setter Property="CornerRadius" Value="5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
+
+        <Button Text="Voltar para Login"
+                Clicked="OnBackToLoginClicked"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Padding="20,10">        
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                <Setter Property="BorderColor" Value="Gray" />
+                                <Setter Property="TextColor" Value="#512BD4"/>
+                                <Setter Property="FontAttributes" Value="Bold" />
+                                <Setter Property="BorderWidth" Value="2" />
+                                <Setter Property="CornerRadius" Value="5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
+    </StackLayout>
+</ContentPage>
