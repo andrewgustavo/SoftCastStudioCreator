@@ -9,7 +9,6 @@ namespace SoftCastStudioCreator.Views
         public AllContentPage()
         {
             InitializeComponent();
-            // Aqui você pode chamar um método para buscar os conteúdos, como uma chamada à API.
             ConteudosCollectionView.ItemsSource = new List<Conteudo>
             {
                 new Conteudo { ID = 1, Titulo = "Vídeo 1", Tipo = "Tutorial", Descricao = "Descrição do vídeo 1", ClassificacaoIndicativa = "Livre", VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_1.mp4" },
@@ -17,28 +16,26 @@ namespace SoftCastStudioCreator.Views
                 new Conteudo { ID = 3, Titulo = "Vídeo 3", Tipo = "Ação", Descricao = "Descrição do vídeo 3", ClassificacaoIndicativa = "18",VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_3.mp4" }
             };
         }
-
-        // Função para o botão "Voltar à Dashboard"
         private async void OnVoltarClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DashboardPage("Andrew Silva")); // Volta para a página anterior (Dashboard)
+            await Navigation.PushAsync(new DashboardPage("Andrew Silva"));
         }
-
-        // Função para o botão "Cadastrar Novo Conteúdo"
         private async void OnNovoConteudoClicked(object sender, EventArgs e)
         {
-            // Navegar para a página de cadastro de conteúdo
             await Navigation.PushAsync(new NewContentPage());
         }
-
-        // Função para o botão "Editar" (Passando o ID do conteúdo)
         private async void OnEditarConteudoClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            int conteudoId = (int)button.CommandParameter; // Pega o ID do conteúdo a ser editado
-            // Navegar para a página de edição, passando o ID do conteúdo
+            int conteudoId = (int)button.CommandParameter; 
             await Navigation.PushAsync(new EditContentPage(conteudoId));
-            //DisplayAlert("Acessar Conteúdos", "Aqui você pode acessar suas listas de conteúdo.", "OK");
+        }
+        private async void OnDeletarConteudoClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            int conteudoId = (int)button.CommandParameter;
+            await DisplayAlert("","Conteúdo deletado com sucesso!", "OK");
+            await Navigation.PopAsync();
         }
 
     }

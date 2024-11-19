@@ -4,39 +4,51 @@
              x:Class="SoftCastStudioCreator.Views.AllContentPage"
              Title="Conteúdos Criados">
 
-    <!-- Cont�iner principal -->
     <StackLayout Padding="20">
-        <!-- Exibi��o dos Conte�dos -->
             <CollectionView x:Name="ConteudosCollectionView" Margin="0,20,0,10" VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10">
                             <StackLayout >
-                                <!-- Título do Conteúdo -->
                                 <Label Text="{Binding Titulo}" FontSize="20" FontAttributes="Bold" />
 
-                                <!-- Tipo de Conteúdo -->
                                 <Label Text="{Binding Tipo}" FontSize="14" TextColor="Gray" />
 
-                                <!-- Descrição -->
                                 <Label Text="{Binding Descricao}" FontSize="14" TextColor="Black" />
 
-                                <!-- Classificação Indicativa -->
                                 <Label Text="{Binding ClassificacaoIndicativa}" FontSize="12" TextColor="Red" />
-
-								<!-- Classificação Indicativa -->
+								
 								<Label Text="{Binding VideoPath}" FontSize="12" TextColor="Blue" />
-
-                                <!-- Botão de Editar Conteúdo -->
-                                <Button Text="Editar" BackgroundColor="LightBlue" TextColor="White" 
-                                    Clicked="OnEditarConteudoClicked" CommandParameter="{Binding ID}" />
-                            </StackLayout>
+                                
+                            <Grid ColumnSpacing="100" Margin="0,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button Text="Editar" 
+                                        Clicked="OnEditarConteudoClicked" 
+                                        BackgroundColor="LightBlue" 
+                                        TextColor="White" 
+                                        Grid.Column="0" 
+                                        CommandParameter="{Binding ID}" />
+                                
+                                <Button Text="Deletar" 
+                                        Clicked="OnDeletarConteudoClicked"  
+                                        BackgroundColor="Red" 
+                                        TextColor="White" 
+                                        Grid.Column="1" 
+                                        CommandParameter="{Binding ID}" />
+                            </Grid>
+                        </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-        <!-- Cadastrar Novo Conteúdo -->
             <Button Text="Incluir Novo Conteúdo" 
                     Clicked="OnNovoConteudoClicked" 
                     FontAttributes="Bold"
@@ -63,16 +75,15 @@
                     </VisualStateManager.VisualStateGroups>
              </Button>
             
-            <!-- Voltar para a Dashboard -->
             <Button Text="Voltar a Dashboard" 
                     Clicked="OnVoltarClicked" 
                     BackgroundColor="Gray"
                     TextColor="White"
-                    Margin="0,10,0,0"
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Padding="20,10">
+                    Padding="20,10"
+                    Margin="0,10,0,0" >
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
                         <VisualStateGroup>
