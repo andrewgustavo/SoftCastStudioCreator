@@ -11,8 +11,9 @@ namespace SoftCastStudioCreator.Views
             // Aqui você pode chamar um método para buscar os conteúdos, como uma chamada à API.
             ConteudosCollectionView.ItemsSource = new List<Conteudo>
             {
-                new Conteudo { ID = 1, Titulo = "Vídeo 1", Tipo = "Tutorial", Descricao = "Descrição do vídeo 1", ClassificacaoIndicativa = "Livre" },
-                new Conteudo { ID = 2, Titulo = "Vídeo 2", Tipo = "Entretenimento", Descricao = "Descrição do vídeo 2", ClassificacaoIndicativa = "16" }
+                new Conteudo { ID = 1, Titulo = "Vídeo 1", Tipo = "Tutorial", Descricao = "Descrição do vídeo 1", ClassificacaoIndicativa = "Livre", VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_1.mp4" },
+                new Conteudo { ID = 2, Titulo = "Vídeo 2", Tipo = "Entretenimento", Descricao = "Descrição do vídeo 2", ClassificacaoIndicativa = "16",VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_2.mp4" },
+                new Conteudo { ID = 3, Titulo = "Vídeo 3", Tipo = "Ação", Descricao = "Descrição do vídeo 3", ClassificacaoIndicativa = "18",VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_3.mp4" }
             };
         }
 

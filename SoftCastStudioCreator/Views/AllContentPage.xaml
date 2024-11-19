@@ -7,10 +7,10 @@
     <!-- Cont�iner principal -->
     <StackLayout Padding="20">
         <!-- Exibi��o dos Conte�dos -->
-            <CollectionView x:Name="ConteudosCollectionView" Margin="0,20,0,10">
+            <CollectionView x:Name="ConteudosCollectionView" Margin="0,20,0,10" VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="1g0" Margin="10">
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10">
                             <StackLayout >
                                 <!-- Título do Conteúdo -->
                                 <Label Text="{Binding Titulo}" FontSize="20" FontAttributes="Bold" />
@@ -23,6 +23,9 @@
 
                                 <!-- Classificação Indicativa -->
                                 <Label Text="{Binding ClassificacaoIndicativa}" FontSize="12" TextColor="Red" />
+
+								<!-- Classificação Indicativa -->
+								<Label Text="{Binding VideoPath}" FontSize="12" TextColor="Blue" />
 
                                 <!-- Botão de Editar Conteúdo -->
                                 <Button Text="Editar" BackgroundColor="LightBlue" TextColor="White" 

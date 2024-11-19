@@ -24,7 +24,8 @@ namespace SoftCastStudioCreator.Views
                 Titulo = "Vídeo Tutorial",
                 Tipo = "Educação",
                 Descricao = "Descrição do vídeo tutorial",
-                ClassificacaoIndicativa = "Livre"
+                ClassificacaoIndicativa = "Livre",
+                VideoPath = "C:\\Users\\UserName\\Videos\\exemplo.mp4"
             };
 
             // Preenche os campos da UI com os dados simulados
@@ -32,6 +33,7 @@ namespace SoftCastStudioCreator.Views
             TipoEntry.Text = conteudo.Tipo;
             DescricaoEditor.Text = conteudo.Descricao;
             ClassificacaoEntry.Text = conteudo.ClassificacaoIndicativa;
+            SelectedVideo.Text = conteudo.VideoPath;
         }
 
         // Função para salvar as alterações do conteúdo
