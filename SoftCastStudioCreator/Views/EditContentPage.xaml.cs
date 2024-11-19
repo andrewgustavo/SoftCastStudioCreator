@@ -1,4 +1,5 @@
-﻿using SoftCastStudioCreator.Models;
+﻿using System.Net.Http;
+using SoftCastStudioCreator.Models;
 
 namespace SoftCastStudioCreator.Views
 {

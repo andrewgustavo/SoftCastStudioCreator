@@ -8,5 +8,7 @@
         public string Descricao { get; set; }
         public string ClassificacaoIndicativa { get; set; }
         public string VideoPath { get; set; }
+        public int CriadorID { get; set; }
+        public Criador Criador { get; set; }
     }
 }
