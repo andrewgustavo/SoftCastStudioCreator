@@ -59,7 +59,7 @@ namespace SoftCastStudioCreator.Views
         private async void OnBackToDashboardClicked(object sender, EventArgs e)
         {
             // Navegação de retorno para a Dashboard
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new DashboardPage("Andrew Silva")); 
         }
     }
 }

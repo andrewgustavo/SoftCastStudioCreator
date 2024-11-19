@@ -1,0 +1,11 @@
+﻿namespace SoftCastStudioCreator.Models
+{
+    public class Conteudo
+    {
+        public int ID { get; set; }
+        public string Titulo { get; set; }
+        public string Tipo { get; set; }
+        public string Descricao { get; set; }
+        public string ClassificacaoIndicativa { get; set; }
+    }
+}

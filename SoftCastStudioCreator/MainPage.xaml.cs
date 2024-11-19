@@ -24,10 +24,10 @@ namespace SoftCastStudioCreator
             }
 
             // Lógica de validação de login (simulada aqui, pode ser feito via API)
-            if (email == "teste@teste.com" && senha == "123")
+            if (email == "teste" && senha == "teste")
             {
                 // Navegar para a DashboardPage com o nome do criador
-                await Navigation.PushAsync(new DashboardPage("Andrew da Silva"));
+                await Navigation.PushAsync(new DashboardPage("Andrew Silva"));
             }
             else
             {

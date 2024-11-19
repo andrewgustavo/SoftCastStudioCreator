@@ -21,16 +21,14 @@ namespace SoftCastStudioCreator.Views
         // Evento para o botão "Incluir Lista de Conteúdo"
         private async void OnIncluirConteudoClicked(object sender, EventArgs e)
         {
-            // Lógica para incluir lista de conteúdo
-            //DisplayAlert("Incluir Lista", "Aqui você poderá incluir suas listas de conteúdo.", "OK");
             await Navigation.PushAsync(new NewContentPage());
         }
 
         // Evento para o botão "Acessar Listas de Conteúdo"
-        private void OnAcessarConteudosClicked(object sender, EventArgs e)
+        private async void OnAcessarConteudosClicked(object sender, EventArgs e)
         {
             // Lógica para acessar listas de conteúdo
-            DisplayAlert("Acessar Conteúdos", "Aqui você pode acessar suas listas de conteúdo.", "OK");
+            await Navigation.PushAsync(new AllContentPage());
         }
         // Evento para o botão "Indicadores de Performance"
         private void OnIndicadoresClicked(object sender, EventArgs e)
