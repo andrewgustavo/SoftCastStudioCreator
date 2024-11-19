@@ -10,8 +10,8 @@
             <CollectionView x:Name="ConteudosCollectionView" Margin="0,20,0,10">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10">
-                            <StackLayout>
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="1g0" Margin="10">
+                            <StackLayout >
                                 <!-- Título do Conteúdo -->
                                 <Label Text="{Binding Titulo}" FontSize="20" FontAttributes="Bold" />
 

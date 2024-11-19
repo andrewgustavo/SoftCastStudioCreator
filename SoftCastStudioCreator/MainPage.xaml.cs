@@ -11,6 +11,11 @@ namespace SoftCastStudioCreator
             InitializeComponent();
         }
 
+        private void OnEntryCompleted(object sender, EventArgs e)
+        {
+            // Chama o método de login quando Enter for pressionado
+            OnLoginClicked(sender, e);
+        }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string email = emailEntry.Text?.Trim();

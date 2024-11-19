@@ -35,8 +35,8 @@ namespace SoftCastStudioCreator.Views
             var button = (Button)sender;
             int conteudoId = (int)button.CommandParameter; // Pega o ID do conteúdo a ser editado
             // Navegar para a página de edição, passando o ID do conteúdo
-            //await Navigation.PushAsync(new EditContentPage(conteudoId));
-            DisplayAlert("Acessar Conteúdos", "Aqui você pode acessar suas listas de conteúdo.", "OK");
+            await Navigation.PushAsync(new EditContentPage(conteudoId));
+            //DisplayAlert("Acessar Conteúdos", "Aqui você pode acessar suas listas de conteúdo.", "OK");
         }
 
     }
