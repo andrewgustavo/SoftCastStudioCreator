@@ -8,9 +8,13 @@ namespace SoftCastStudioCreator.Views
     public partial class AllContentPage : ContentPage
     {
         private readonly UserService _userService;
-        public AllContentPage()
+        private readonly ContentService _contentService;
+        public AllContentPage(UserService userService, ContentService contentService)
         {
             InitializeComponent();
+            _userService = userService;
+            _contentService = contentService;
+
             ConteudosCollectionView.ItemsSource = new List<Conteudo>
             {
                 new Conteudo { ID = 1, Titulo = "Vídeo 1", Tipo = "Tutorial", Descricao = "Descrição do vídeo 1", ClassificacaoIndicativa = "Livre", VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_1.mp4" },
@@ -20,11 +24,12 @@ namespace SoftCastStudioCreator.Views
         }
         private async void OnVoltarClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DashboardPage(_userService));
+            await Navigation.PushAsync(new DashboardPage(_userService, _contentService));
         }
         private async void OnNovoConteudoClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewContentPage());
+            var newContentPage = new NewContentPage(_userService, _contentService);
+            await Navigation.PushAsync(newContentPage);
         }
         private async void OnEditarConteudoClicked(object sender, EventArgs e)
         {

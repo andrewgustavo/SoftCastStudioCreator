@@ -28,17 +28,9 @@
                Margin="0,10,0,5"
                x:Name="classindicEntry" />
 
-        <Button Text="Selecionar Vídeo"
-                Clicked="OnSelectVideoClicked"
-                FontAttributes="Bold"
-                Margin="0,10,0,0" />
-
-        <Label x:Name="SelectedVideoLabel"
-               Text="Nenhum vídeo selecionado"
-               FontSize="14"
-               TextColor="Gray"
-               Padding="20,10"
-               HorizontalOptions="Center" />
+        <Entry Placeholder="Link do Vídeo"
+               Margin="0,10,0,5"
+               x:Name="videoPathEntry" />
        
         <Button Text="Incluir Conteúdo"
                 Clicked="OnIncludeClicked"

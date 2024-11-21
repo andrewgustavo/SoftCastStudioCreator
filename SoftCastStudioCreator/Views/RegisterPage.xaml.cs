@@ -8,11 +8,13 @@ namespace SoftCastStudioCreator.Views
     public partial class RegisterPage : ContentPage
     {
         private readonly UserService _userService;
+        private readonly ContentService _contentService;
 
-        public RegisterPage(UserService userService)
+        public RegisterPage(UserService userService, ContentService contentService)
         {
             InitializeComponent();
-            _userService = userService; // Serviço de usuário injetado
+            _userService = userService;
+            _contentService = contentService;
         }
 
         private async void OnCadastrarClicked(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace SoftCastStudioCreator.Views
                 if (sucesso)
                 {
                     await DisplayAlert("Cadastro Concluído", "Seu cadastro foi realizado com sucesso!", "OK");
-                    await Navigation.PushAsync(new DashboardPage(_userService));
+                    await Navigation.PushAsync(new DashboardPage(_userService, _contentService));
                 }
                 else
                 {

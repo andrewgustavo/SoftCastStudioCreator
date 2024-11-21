@@ -8,6 +8,7 @@ namespace SoftCastStudioCreator.Services
     {
         private readonly HttpClient _httpClient;
         private Criador _criadorAtual;
+        private AuthenticationService _authService;
 
         public UserService(HttpClient httpClient)
         {

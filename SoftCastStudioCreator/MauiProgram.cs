@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SoftCastStudioCreator.Services;
+using SoftCastStudioCreator.Views;
 
 namespace SoftCastStudioCreator
 {
@@ -10,7 +11,7 @@ namespace SoftCastStudioCreator
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
+                .UseMauiApp<App>()               
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -27,7 +28,13 @@ namespace SoftCastStudioCreator
             // Registrar serviços
             builder.Services.AddSingleton<AuthenticationService>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<ContentService>();
 
+            builder.Services.AddTransient<DashboardPage>();
+            builder.Services.AddTransient<NewContentPage>();
+            builder.Services.AddTransient<AllContentPage>();
+            builder.Services.AddTransient<EditContentPage>();
+            builder.Services.AddTransient<VideoPage>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

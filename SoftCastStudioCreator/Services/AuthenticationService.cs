@@ -9,7 +9,6 @@ namespace SoftCastStudioCreator.Services
     public class AuthenticationService
     {
         private readonly HttpClient _httpClient;
-        private Criador _criadorAtual;
 
         public AuthenticationService(HttpClient httpClient)
         {

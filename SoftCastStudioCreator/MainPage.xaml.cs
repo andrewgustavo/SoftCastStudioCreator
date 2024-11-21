@@ -15,18 +15,15 @@ namespace SoftCastStudioCreator
     {
         private readonly AuthenticationService _authService;
         private readonly UserService _userService;
+        private readonly ContentService _contentService;
 
-        public MainPage(AuthenticationService authService, UserService userService)
+        public MainPage(AuthenticationService authService, UserService userService, ContentService contentService)
         {
             InitializeComponent();
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _contentService = contentService ?? throw new ArgumentNullException(nameof(contentService));
         }
-
-        //private async void OnEntryCompleted(object sender, EventArgs e)
-        //{
-        //    await OnLoginClicked(sender, e);
-        //}
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
@@ -47,22 +44,16 @@ namespace SoftCastStudioCreator
 
             try
             {
-                var json = JsonSerializer.Serialize(login);
-                Console.WriteLine(json);
-                // Tenta autenticar o usuário
                 bool loginSuccess = await _authService.LoginAsync(login);
 
                 if (loginSuccess)
                 {
-                    // Obter dados do usuário autenticado
                     Criador criador = await _userService.GetUserByEmailAsync(email);
                     if (criador != null)
                     {
-                        // Armazena os dados no serviço para reutilização
                         _userService.SetUser(criador);
 
-                        // Navega para a Dashboard
-                        await Navigation.PushAsync(new DashboardPage(_userService));
+                        await Navigation.PushAsync(new DashboardPage(_userService, _contentService));
                     }
                     else
                     {
@@ -82,7 +73,7 @@ namespace SoftCastStudioCreator
 
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage(_userService));
+            await Navigation.PushAsync(new RegisterPage(_userService, _contentService));
         }
     }
 }
