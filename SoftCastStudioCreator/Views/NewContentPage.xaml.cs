@@ -1,11 +1,13 @@
 ﻿using System.Net.Http;
 using Microsoft.Maui.Controls;
+using SoftCastStudioCreator.Services;
 
 namespace SoftCastStudioCreator.Views
 {
     public partial class NewContentPage : ContentPage
     {
         private string? selectedVideoPath;
+        private readonly UserService _userService;
         public NewContentPage()
         {
             InitializeComponent();
@@ -47,12 +49,12 @@ namespace SoftCastStudioCreator.Views
             }
 
             await DisplayAlert("Sucesso", "Conteúdo incluído com sucesso!", "OK");
-            await Navigation.PushAsync(new DashboardPage("Andrew Silva"));
+            await Navigation.PushAsync(new DashboardPage(_userService));
         }
 
         private async void OnBackToDashboardClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DashboardPage("Andrew Silva")); 
+            await Navigation.PushAsync(new DashboardPage(_userService)); 
         }
     }
 }

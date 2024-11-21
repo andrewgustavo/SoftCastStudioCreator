@@ -1,11 +1,13 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Net.Http;
 using SoftCastStudioCreator.Models;
+using SoftCastStudioCreator.Services;
 
 namespace SoftCastStudioCreator.Views
 {
     public partial class AllContentPage : ContentPage
     {
+        private readonly UserService _userService;
         public AllContentPage()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace SoftCastStudioCreator.Views
         }
         private async void OnVoltarClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DashboardPage("Andrew Silva"));
+            await Navigation.PushAsync(new DashboardPage(_userService));
         }
         private async void OnNovoConteudoClicked(object sender, EventArgs e)
         {

@@ -1,18 +1,20 @@
-﻿using System.Net.Http;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Layouts;
-using System;
+﻿using SoftCastStudioCreator.Models;
+using SoftCastStudioCreator.Services;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace SoftCastStudioCreator.Views
 {
     public partial class RegisterPage : ContentPage
     {
-        public RegisterPage()
+        private readonly UserService _userService;
+
+        public RegisterPage(UserService userService)
         {
             InitializeComponent();
+            _userService = userService; // Serviço de usuário injetado
         }
+
         private async void OnCadastrarClicked(object sender, EventArgs e)
         {
             string nome = nomeEntry.Text?.Trim();
@@ -20,6 +22,7 @@ namespace SoftCastStudioCreator.Views
             string senha = senhaEntry.Text?.Trim();
             string confirmarSenha = confirmSenhaEntry.Text?.Trim();
 
+            // Validações de entrada
             if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(confirmarSenha))
             {
                 await DisplayAlert("Erro", "Todos os campos são obrigatórios.", "OK");
@@ -38,19 +41,44 @@ namespace SoftCastStudioCreator.Views
                 return;
             }
 
-            await DisplayAlert("Cadastro Concluído", "Seu cadastro foi realizado com sucesso!", "OK");
-                        
-            string nomeCriador = nome;
-            await Navigation.PushAsync(new DashboardPage(nomeCriador));
+            // Criar objeto Criador
+            var criador = new Criador
+            {
+                Nome = nome,
+                Email = email,
+                Senha = senha
+            };
+
+            try
+            {
+                // Registrar criador via UserService
+                var sucesso = await _userService.RegisterCriadorAsync(criador);
+
+                if (sucesso)
+                {
+                    await DisplayAlert("Cadastro Concluído", "Seu cadastro foi realizado com sucesso!", "OK");
+                    await Navigation.PushAsync(new DashboardPage(_userService));
+                }
+                else
+                {
+                    await DisplayAlert("Erro", "Não foi possível realizar o cadastro. Tente novamente.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erro", $"Erro ao se comunicar com a API: {ex.Message}", "OK");
+            }
         }
+
         private bool IsValidEmail(string email)
         {
             var emailRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
             return emailRegex.IsMatch(email);
         }
+
         private void OnBackToLoginClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
-        }        
+        }
     }
 }

@@ -1,12 +1,15 @@
-﻿namespace SoftCastStudioCreator
+﻿using SoftCastStudioCreator.Services;
+
+namespace SoftCastStudioCreator
 {
     public partial class App : Application
     {
-        public App()
+        public App(AuthenticationService authService,UserService userService)
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            // Passa o serviço de autenticação para o MainPage
+            MainPage = new NavigationPage(new MainPage(authService, userService));
         }
     }
 }
