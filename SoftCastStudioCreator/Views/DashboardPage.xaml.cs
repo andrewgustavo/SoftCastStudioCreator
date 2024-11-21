@@ -18,7 +18,7 @@ namespace SoftCastStudioCreator.Views
         }
         private async void OnLogoutClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage(null,null));
+            await Navigation.PushAsync(new MainPage(_authService, _userService));
         }
 
         private async void OnIncluirConteudoClicked(object sender, EventArgs e)
