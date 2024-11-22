@@ -20,18 +20,36 @@
                x:Name="descriptionEntry"
                HeightRequest="100"/>
         
-        <Entry Placeholder="Categoria" 
+        <Entry Placeholder="Tipo/Categoria" 
                Margin="0,10,0,5"
-               x:Name="categoryEntry" />
+               x:Name="tipeEntry" />
 
         <Entry Placeholder="Classificação Indicativa" 
                Margin="0,10,0,5"
                x:Name="classindicEntry" />
+        
+        <Grid ColumnSpacing="15" Margin="0,10,0,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Entry Placeholder="Link do Vídeo"
-               Margin="0,10,0,5"
-               x:Name="videoPathEntry" />
-       
+            <Button Text="Selecionar Vídeo"
+                    Margin="0,10,530,5"
+                    x:Name="selectVideoButton"
+                    Clicked="OnSelectVideoClicked"
+                    Grid.Column="0"/>
+            
+            <Entry Placeholder="Caminho do Vídeo"
+                   Margin="-530,10,0,5"
+                   IsEnabled="False"
+                   x:Name="videoPathEntry"
+                   Grid.Column="1"/>        
+        </Grid>
+        
         <Button Text="Incluir Conteúdo"
                 Clicked="OnIncludeClicked"
                 FontAttributes="Bold"

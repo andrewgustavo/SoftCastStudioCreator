@@ -2,6 +2,8 @@
 using System.Net.Http;
 using SoftCastStudioCreator.Models;
 using SoftCastStudioCreator.Services;
+using CommunityToolkit.Maui;
+
 
 namespace SoftCastStudioCreator.Views
 {
@@ -14,13 +16,27 @@ namespace SoftCastStudioCreator.Views
             InitializeComponent();
             _userService = userService;
             _contentService = contentService;
+            LoadConteudos();
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            // Recarregar os conteúdos toda vez que a página aparecer
+            LoadConteudos();
+        }
 
-            ConteudosCollectionView.ItemsSource = new List<Conteudo>
+        private async void LoadConteudos()
+        {
+            var criadorAtual = _userService.GetCriadorAtual();
+            if (criadorAtual != null)
             {
-                new Conteudo { ID = 1, Titulo = "Vídeo 1", Tipo = "Tutorial", Descricao = "Descrição do vídeo 1", ClassificacaoIndicativa = "Livre", VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_1.mp4" },
-                new Conteudo { ID = 2, Titulo = "Vídeo 2", Tipo = "Entretenimento", Descricao = "Descrição do vídeo 2", ClassificacaoIndicativa = "16",VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_2.mp4" },
-                new Conteudo { ID = 3, Titulo = "Vídeo 3", Tipo = "Ação", Descricao = "Descrição do vídeo 3", ClassificacaoIndicativa = "18",VideoPath = "C:\\Users\\UserName\\Videos\\exemplo_3.mp4" }
-            };
+                var conteudos = await _contentService.GetConteudosByCriadorAsync(criadorAtual.ID);
+                ConteudosCollectionView.ItemsSource = conteudos;
+            }
+            else
+            {
+                await DisplayAlert("Erro", "Não foi possível carregar os conteúdos do criador logado.", "OK");
+            }
         }
         private async void OnVoltarClicked(object sender, EventArgs e)
         {
@@ -33,17 +49,51 @@ namespace SoftCastStudioCreator.Views
         }
         private async void OnEditarConteudoClicked(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            int conteudoId = (int)button.CommandParameter; 
-            await Navigation.PushAsync(new EditContentPage(conteudoId));
+            var conteudoId = (int)((Button)sender).CommandParameter;
+
+            await Navigation.PushAsync(new EditContentPage(conteudoId, _contentService));
         }
         private async void OnDeletarConteudoClicked(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            int conteudoId = (int)button.CommandParameter;
-            await DisplayAlert("","Conteúdo deletado com sucesso!", "OK");
-            await Navigation.PopAsync();
-        }
+            var conteudoId = (int)((Button)sender).CommandParameter;
+            bool confirmar = await DisplayAlert(
+                "Confirmação",
+                "Tem certeza de que deseja deletar este conteúdo?",
+                "Sim",
+                "Não"
+             );
 
+            if (confirmar)
+            {
+                var resultado = await _contentService.DeletarConteudo(conteudoId);
+
+                if (resultado)
+                {
+                    await DisplayAlert("Sucesso", "Conteúdo deletado com sucesso!", "OK");
+                    AtualizarLista();
+                }
+                else
+                {
+                    await DisplayAlert("Erro", "Falha ao deletar o conteúdo.", "OK");
+                }
+            }
+
+        }
+        private async void AtualizarLista()
+        {
+            try
+            {
+                var criadorAtual = _userService.GetCriadorAtual();
+                if (criadorAtual != null)
+                {
+                    var conteudos = await _contentService.GetConteudosByCriadorAsync(criadorAtual.ID);
+                    ConteudosCollectionView.ItemsSource = conteudos; // Atualiza a interface
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erro", $"Não foi possível atualizar a lista: {ex.Message}", "OK");
+            }
+        }
     }
 }

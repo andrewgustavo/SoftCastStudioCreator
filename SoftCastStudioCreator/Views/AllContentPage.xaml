@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SoftCastStudioCreator.Views.AllContentPage"
              Title="Conteúdos Criados">
 
     <StackLayout Padding="20">
-            <CollectionView x:Name="ConteudosCollectionView" Margin="0,20,0,10" VerticalOptions="FillAndExpand">
+            <CollectionView x:Name="ConteudosCollectionView" Margin="400,20,400,10" VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="10">
-                            <StackLayout >
+                        <StackLayout Margin="10" >
                                 <Label Text="{Binding Titulo}" FontSize="20" FontAttributes="Bold" />
-
                                 <Label Text="{Binding Tipo}" FontSize="14" TextColor="Gray" />
-
                                 <Label Text="{Binding Descricao}" FontSize="14" TextColor="Black" />
+                                <Label Text="{Binding ClassificacaoIndicativa}" FontSize="12" />
 
-                                <Label Text="{Binding ClassificacaoIndicativa}" FontSize="12" TextColor="Red" />
-								
-								<Label Text="{Binding VideoPath}" FontSize="12" TextColor="Blue" />
-                                
-                            <Grid ColumnSpacing="100" Margin="0,10,0,0">
+                            <toolkit:MediaElement Source="{Binding VideoPath}" 
+                                          HeightRequest="350" 
+                                          WidthRequest="550" 
+                                          HorizontalOptions="Center" 
+                                          VerticalOptions="CenterAndExpand"
+                                          ShouldAutoPlay="False" 
+                                          ShouldShowPlaybackControls="True" />
+
+                            <Grid ColumnSpacing="10" Margin="0,-30,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -54,8 +58,7 @@
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Padding="20,10"
-                    Margin="0,40,0,0">
+                    Padding="20,10">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroupList>
                             <VisualStateGroup>

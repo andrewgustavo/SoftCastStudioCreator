@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SoftCastStudioCreator.Services;
 using SoftCastStudioCreator.Views;
+using CommunityToolkit.Maui;
 
 namespace SoftCastStudioCreator
 {
@@ -11,7 +12,9 @@ namespace SoftCastStudioCreator
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()               
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -19,6 +22,7 @@ namespace SoftCastStudioCreator
                     fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
                 });
 
+                        
             // Configurar endereço base da API
             builder.Services.AddSingleton(sp => new HttpClient
             {
@@ -34,7 +38,6 @@ namespace SoftCastStudioCreator
             builder.Services.AddTransient<NewContentPage>();
             builder.Services.AddTransient<AllContentPage>();
             builder.Services.AddTransient<EditContentPage>();
-            builder.Services.AddTransient<VideoPage>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
